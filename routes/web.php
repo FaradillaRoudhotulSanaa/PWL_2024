@@ -10,7 +10,12 @@
 |
 */
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageContoller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
 
 //---- BASIC ROUTING ----//
 
@@ -69,3 +74,22 @@ Route::get('/user/{name?}', function ($name = 'John') {
 Route::get('/user/profile', function () {
     //
 })->name('profile');
+
+//--- CONTROLLER ----//
+
+// Langkah D
+Route::get('/hello', [WelcomeController::class,'hello']);
+
+// Tugas Modifikasi 
+Route::get('/', [PageContoller::class,'index']);
+Route::get('/about', [PageContoller::class,'about']);
+Route::get('/articles/{id}', [PageContoller::class,'articles']);
+
+// Tugas HomeController
+Route::get('/home', [HomeController::class,'HomeController']);
+
+// Tugas AboutController
+Route::get('/about', [AboutController::class,'about']);
+
+// Tugas ArticlesController
+Route::get('/articles/{id}', [ArticlesController::class,'articles']);
