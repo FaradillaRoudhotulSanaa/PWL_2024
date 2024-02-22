@@ -14,6 +14,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageContoller;
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 
@@ -77,19 +78,30 @@ Route::get('/user/profile', function () {
 
 //--- CONTROLLER ----//
 
+//-- MEMBUAT CONTROLLER --//
 // Langkah D
-Route::get('/hello', [WelcomeController::class,'hello']);
+Route::get('/hello', [WelcomeController::class, 'hello']);
 
 // Tugas Modifikasi 
-Route::get('/', [PageContoller::class,'index']);
-Route::get('/about', [PageContoller::class,'about']);
-Route::get('/articles/{id}', [PageContoller::class,'articles']);
+Route::get('/', [PageContoller::class, 'index']);
+Route::get('/about', [PageContoller::class, 'about']);
+Route::get('/articles/{id}', [PageContoller::class, 'articles']);
 
 // Tugas HomeController
-Route::get('/home', [HomeController::class,'HomeController']);
+Route::get('/home', [HomeController::class, 'HomeController']);
 
 // Tugas AboutController
-Route::get('/about', [AboutController::class,'about']);
+Route::get('/about', [AboutController::class, 'about']);
 
 // Tugas ArticlesController
-Route::get('/articles/{id}', [ArticlesController::class,'articles']);
+Route::get('/articles/{id}', [ArticlesController::class, 'articles']);
+
+//-- RESOURCE CONTROLLER --//
+// Langkah B
+Route::resource('photos', PhotoController::class);
+
+// Langkah D 
+Route::resource('photos', PhotoController::class)->only(['index', 'show']);
+Route::resource('photos', PhotoController::class)->except([
+    'create', 'store', 'update', 'destroy'
+]);
