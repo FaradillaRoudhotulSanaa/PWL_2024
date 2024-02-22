@@ -105,3 +105,14 @@ Route::resource('photos', PhotoController::class)->only(['index', 'show']);
 Route::resource('photos', PhotoController::class)->except([
     'create', 'store', 'update', 'destroy'
 ]);
+
+//---- VIEW ----//
+
+//-- View dari Direktori
+// Langkah B 
+Route::get('/greeting', function() {
+    return view('blog.hello', ['name' => 'Faradilla']);
+});
+
+//-- Menampilkan view dari controller --//
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
